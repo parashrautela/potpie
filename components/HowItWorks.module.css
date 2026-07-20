@@ -1,0 +1,180 @@
+/* ---------- Part labels ---------- */
+
+.partLabel {
+  display: block;
+  margin-bottom: 24px;
+}
+
+/* ---------- Part A: architecture layer cake ---------- */
+
+.layers {
+  width: 100%;
+}
+
+.layer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+}
+
+.layer + .layer {
+  border-top: 0;
+}
+
+.layerCore {
+  background: var(--color-accent-dim);
+}
+
+.layerName {
+  font-family: var(--font-display), sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.layerItems {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* ---------- Part B: engagement timeline ---------- */
+
+.engagement {
+  margin-top: 72px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.step {
+  position: relative;
+  border-top: 1px solid var(--border-default);
+  padding-top: 18px;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+}
+
+.stepLabel {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.stepText {
+  font-family: var(--font-body), sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ---------- Involvement / autonomy bars ---------- */
+
+.bars {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.barLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 0;
+}
+
+.barInvolvement {
+  background: linear-gradient(
+    90deg,
+    var(--text-primary) 0%,
+    rgba(11, 16, 21, 0.25) 60%,
+    transparent 100%
+  );
+}
+
+.barAutonomy {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(183, 246, 0, 0.35) 40%,
+    var(--color-accent) 100%
+  );
+}
+
+/* ---------- Closing callout ---------- */
+
+.callout {
+  margin-top: 56px;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 24px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 880px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .step {
+    border-top: 0;
+    border-left: 1px solid var(--border-default);
+    padding: 0 0 0 20px;
+  }
+
+  .step::before {
+    top: 2px;
+    left: -4px;
+  }
+
+  .engagement {
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 600px) {
+  .layer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 18px 20px;
+  }
+
+  .layerItems {
+    text-align: left;
+  }
+
+  .callout {
+    font-size: 18px;
+    padding-left: 18px;
+  }
+}

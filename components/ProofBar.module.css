@@ -1,0 +1,119 @@
+/* ---------- Stats pills ---------- */
+
+.pills {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: var(--color-accent-dim);
+  border: 1px solid var(--border-accent);
+  border-radius: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Square "dot" — sharp corners are the design signature, nothing gets rounded */
+.dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 0;
+}
+
+/* ---------- Logo marquee ---------- */
+
+.marqueeBlock {
+  margin-top: 64px;
+}
+
+.marquee {
+  margin-top: 20px;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding-right: 64px;
+}
+
+.wordmark {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation-play-state: paused;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .pills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .marqueeBlock {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pills {
+    grid-template-columns: 1fr;
+  }
+
+  .wordmark {
+    font-size: 18px;
+  }
+
+  .group {
+    gap: 40px;
+    padding-right: 40px;
+  }
+}
