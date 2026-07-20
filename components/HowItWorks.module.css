@@ -5,64 +5,272 @@
   margin-bottom: 24px;
 }
 
-/* ---------- Part A: architecture layer cake ---------- */
+/* ---------- Part A: orchestration architecture diagram ---------- */
 
-.layers {
+.diagram {
   width: 100%;
 }
 
-.layer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 20px 24px;
+.band {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 28px;
+  padding: 24px 28px;
+  background: var(--color-bg);
   border: 1px solid var(--border-default);
   border-radius: 0;
 }
 
-.layer + .layer {
-  border-top: 0;
-}
-
-.layerCore {
+.bandOwned {
   background: var(--color-accent-dim);
+  border-color: var(--border-accent);
 }
 
-.layerName {
-  font-family: var(--font-display), sans-serif;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.3;
+.rail {
+  padding-top: 2px;
 }
 
-.layerItems {
+.railLabel {
   font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-ink-strong);
+}
+
+.railDesc {
+  margin-top: 8px;
+  font-family: var(--font-body), sans-serif;
   font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  max-width: 160px;
+}
+
+.bandBody {
+  min-width: 0;
+}
+
+/* Vertical connector arrow between bands */
+.flow {
+  position: relative;
+  height: 26px;
+  width: 100%;
+}
+
+.flow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+.flow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid var(--border-strong);
+}
+
+/* ---------- Chips ---------- */
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  padding: 12px 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.chipGhost {
+  border-style: dashed;
+  color: var(--text-dim);
+}
+
+/* ---------- Agent layer tree ---------- */
+
+.orchestrator {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  background: var(--color-bg);
+  border: 1px solid var(--border-active);
+  border-radius: 0;
+  text-align: center;
+}
+
+.orchestratorName {
+  font-family: var(--font-display), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.orchestratorDesc {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.treeStem {
+  width: 1px;
+  height: 16px;
+  margin: 0 auto;
+  background: var(--border-strong);
+}
+
+.treeBar {
+  height: 1px;
+  margin: 0 10%;
+  background: var(--border-strong);
+}
+
+.agentRow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.agentCell {
+  position: relative;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.agentCell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  background: var(--border-strong);
+}
+
+.agentCell .chip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Harness grid ---------- */
+
+.harnessGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* ---------- Context layer cards ---------- */
+
+.cardRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  padding: 16px 18px;
+  background: var(--color-bg);
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+}
+
+.cardGraph {
+  border-color: var(--border-accent);
+}
+
+.cardName {
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cardItems {
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
   line-height: 1.6;
   color: var(--text-muted);
-  text-align: right;
 }
 
-/* ---------- Part B: engagement timeline ---------- */
+/* Small connector between source cards and graph cards */
+.innerFlow {
+  position: relative;
+  height: 20px;
+  width: 100%;
+}
+
+.innerFlow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 5px;
+  left: 50%;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+.innerFlow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid var(--border-strong);
+}
+
+/* ---------- Part B: engagement step rows ---------- */
 
 .engagement {
   margin-top: 72px;
 }
 
-.steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-}
-
-.step {
-  position: relative;
+.stepRows {
   border-top: 1px solid var(--border-default);
-  padding-top: 18px;
 }
 
-.step::before {
+.stepRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr 340px;
+  gap: 32px;
+  align-items: center;
+  padding: 28px 4px;
+  border-bottom: 1px solid var(--border-default);
+  transition: background 0.15s ease;
+}
+
+.stepRow:hover {
+  background: var(--surface-tint);
+}
+
+/* Lime square marker on each row's top border */
+.stepRow::before {
   content: "";
   position: absolute;
   top: -4px;
@@ -72,56 +280,71 @@
   background: var(--color-accent);
 }
 
-.stepLabel {
-  display: block;
-  margin-bottom: 12px;
+.stepNum {
+  font-family: var(--font-display), sans-serif;
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepName {
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .stepText {
+  margin-top: 8px;
   font-family: var(--font-body), sans-serif;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--text-muted);
+  max-width: 520px;
 }
 
-/* ---------- Involvement / autonomy bars ---------- */
-
-.bars {
-  margin-top: 48px;
+/* Per-stage involvement/autonomy meter */
+.meter {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.barLabel {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-
-.bar {
-  width: 100%;
-  height: 10px;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-default);
   border-radius: 0;
+  background: var(--color-bg);
 }
 
-.barInvolvement {
-  background: linear-gradient(
-    90deg,
-    var(--text-primary) 0%,
-    rgba(11, 16, 21, 0.25) 60%,
-    transparent 100%
-  );
+.meterRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.barAutonomy {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(183, 246, 0, 0.35) 40%,
-    var(--color-accent) 100%
-  );
+.meterLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.meterTrack {
+  height: 8px;
+  width: 100%;
+  background: rgba(11, 16, 21, 0.06);
+}
+
+.meterFillDark {
+  height: 100%;
+  background: var(--text-primary);
+}
+
+.meterFillLime {
+  height: 100%;
+  background: var(--color-accent);
 }
 
 /* ---------- Closing callout ---------- */
@@ -140,41 +363,83 @@
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
-  .steps {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .stepRow {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 24px 0;
   }
 
-  .step {
-    border-top: 0;
-    border-left: 1px solid var(--border-default);
-    padding: 0 0 0 20px;
+  .stepNum {
+    font-size: 32px;
   }
 
-  .step::before {
-    top: 2px;
-    left: -4px;
+  .meter {
+    grid-column: 2;
+    max-width: 420px;
   }
 
   .engagement {
     margin-top: 56px;
   }
+
+  .band {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .railDesc {
+    max-width: none;
+    margin-top: 4px;
+  }
+
+  .treeBar {
+    display: none;
+  }
+
+  .agentRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .agentCell {
+    padding-top: 0;
+  }
+
+  .agentCell::before {
+    display: none;
+  }
+
+  .treeStem {
+    height: 14px;
+    margin-bottom: 12px;
+  }
+
+  .harnessGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cardRow {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 600px) {
-  .layer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 18px 20px;
-  }
-
-  .layerItems {
-    text-align: left;
-  }
-
   .callout {
     font-size: 18px;
     padding-left: 18px;
+  }
+
+  .agentRow,
+  .harnessGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .chipRow {
+    flex-direction: column;
+  }
+
+  .chip {
+    text-align: left;
   }
 }

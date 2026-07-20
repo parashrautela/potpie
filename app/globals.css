@@ -35,6 +35,9 @@
   /* Feedback */
   --negative: #c24a26;
 
+  /* Typography — Uncut Sans (via --font-display) serves display AND body; DM Mono for labels */
+  --font-body: var(--font-display);
+
   /* Layout */
   --container-max: 1232px;
   --container-narrow: 880px;
@@ -99,18 +102,18 @@ h4 {
 
 h1 {
   font-size: clamp(44px, 6.5vw, 72px);
-  letter-spacing: -0.058em;
+  letter-spacing: -0.035em;
 }
 
 h2 {
   font-size: clamp(32px, 4.5vw, 52px);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
   line-height: 1.08;
 }
 
 h3 {
   font-size: clamp(22px, 2.6vw, 28px);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 h4 {

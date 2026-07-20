@@ -1,17 +1,32 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans, DM_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { DM_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const uncutSans = localFont({
+  src: [
+    {
+      path: "./fonts/Uncut-Sans-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Uncut-Sans-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Uncut-Sans-Semibold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Uncut-Sans-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -23,7 +38,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Potpie — All your engineering. One brain.",
+  title: "Potpie — AI-native SDLC automation for large scale engineering",
   description:
     "Potpie unifies your code, tickets, docs, architecture, and workflows into a living context graph your agents reason over — deployed in your environment, owned by you.",
 };
@@ -34,10 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${dmSans.variable} ${dmMono.variable}`}
-    >
+    <html lang="en" className={`${uncutSans.variable} ${dmMono.variable}`}>
       <body>{children}</body>
     </html>
   );

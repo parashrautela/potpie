@@ -8,11 +8,6 @@ const PILLS = [
   "Open source core — 5.1k+ stars",
 ];
 
-/* Greyscale text stand-ins until real logo SVGs arrive */
-const WORDMARKS = ["Flobiz", "Astronomer", "Moniepoint"];
-
-const MARQUEE_SET = Array.from({ length: 4 }, () => WORDMARKS).flat();
-
 export default function ProofBar() {
   return (
     <section className="section">
@@ -33,28 +28,6 @@ export default function ProofBar() {
       </div>
 
       {/* Results metric cards pending confirmed data (onboarding time, PR cycles, token spend, KT hours, agent completion) */}
-
-      <div className={styles.marqueeBlock}>
-        <div className="mono-tag">Trusted by and built for</div>
-        <div className={styles.marquee}>
-          <div className={styles.track}>
-            <div className={styles.group}>
-              {MARQUEE_SET.map((name, i) => (
-                <span className={styles.wordmark} key={`a-${i}`}>
-                  {name}
-                </span>
-              ))}
-            </div>
-            <div className={styles.group} aria-hidden="true">
-              {MARQUEE_SET.map((name, i) => (
-                <span className={styles.wordmark} key={`b-${i}`}>
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

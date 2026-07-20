@@ -1,49 +1,91 @@
 import SectionHeader from "./SectionHeader";
 import styles from "./HowItWorks.module.css";
 
-const layers = [
+const interfaces = [
+  "IDEs / VS Code",
+  "GitHub Copilot",
+  "Claude Code",
+  "Internal tools & dashboards",
+];
+
+const agents = [
+  "Debugging agent",
+  "Impact analysis agent",
+  "Code generation agent",
+  "QA / testing agent",
+];
+
+const harness = [
+  "Orchestration & task routing",
+  "Context selection & compression",
+  "Tool execution & sandboxing",
+  "Memory & state management",
+  "Feedback loops & validation",
+  "Observability & guardrails",
+];
+
+const sources = [
   {
-    name: "Applications",
-    items: "RCA · Test generation · Onboarding · Q&A · Documentation · Analytics",
-    core: false,
+    name: "Codebase",
+    items: "Services · APIs · Dependencies · Architecture · Commits",
   },
   {
-    name: "Harness",
-    items: "Task orchestration · Routing · Tool use · Validation · Guardrails",
-    core: false,
+    name: "Knowledge base",
+    items: "Docs · Wikis · Standards · SOPs · Design docs",
   },
   {
-    name: "Context graph",
-    items: "Code graph · Knowledge graph · Ontology · Hybrid retrieval",
-    core: true,
-  },
-  {
-    name: "Your data",
-    items: "Codebases · Docs · Tickets · APIs · Logs · Architecture",
-    core: false,
+    name: "Jira / tickets",
+    items: "Bugs · Features · Tasks · Requirements · History",
   },
 ];
 
+const graphs = [
+  {
+    name: "Code graph",
+    items: "AST · Call graph · Data flow · Dependencies",
+  },
+  {
+    name: "Knowledge graph",
+    items: "Entities · Relations · Semantics",
+  },
+  {
+    name: "Ontology layer",
+    items: "Domain concepts · Mappings · Relationships",
+  },
+];
+
+const models = ["Claude", "OpenAI / GPT", "Other LLMs", "Future models"];
+
 const steps = [
   {
-    label: "01 / Embed",
+    num: "01",
+    name: "Embed",
     text: "Our engineers work alongside your team on real delivery — understanding your systems, architecture, and workflows.",
+    involvement: 90,
   },
   {
-    label: "02 / Unify",
+    num: "02",
+    name: "Unify",
     text: "The context graph fills in. Your code, tickets, docs, and decisions become a unified, traversable graph inside your environment.",
+    involvement: 75,
   },
   {
-    label: "03 / Prove",
+    num: "03",
+    name: "Prove",
     text: "Agents start doing the work: spec generation, implementation, debugging, testing, impact analysis. All grounded in context from stages 1-2.",
+    involvement: 55,
   },
   {
-    label: "04 / Replicate",
+    num: "04",
+    name: "Replicate",
     text: "Workflows expand across teams. The context graph compounds. Engineers per unit of output goes down.",
+    involvement: 35,
   },
   {
-    label: "05 / Transform",
+    num: "05",
+    name: "Transform",
     text: "The practice is yours. The context is yours. The intelligence layer is yours. Potpie’s involvement decreases as your autonomy increases.",
+    involvement: 15,
   },
 ];
 
@@ -66,40 +108,166 @@ export default function HowItWorks() {
       />
 
       <div className={`mono-tag ${styles.partLabel}`}>{"The architecture"}</div>
-      <div className={styles.layers}>
-        {layers.map((layer) => (
-          <div
-            key={layer.name}
-            className={
-              layer.core ? `${styles.layer} ${styles.layerCore}` : styles.layer
-            }
-          >
-            <div className={styles.layerName}>{layer.name}</div>
-            <div className={styles.layerItems}>{layer.items}</div>
+      <div className={styles.diagram}>
+        {/* Band 1 — user interfaces */}
+        <div className={styles.band}>
+          <div className={styles.rail}>
+            <div className={styles.railLabel}>User interfaces</div>
           </div>
-        ))}
+          <div className={styles.bandBody}>
+            <div className={styles.chipRow}>
+              {interfaces.map((name) => (
+                <div className={styles.chip} key={name}>
+                  {name}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.flow} aria-hidden="true" />
+
+        {/* Band 2 — agent layer */}
+        <div className={styles.band}>
+          <div className={styles.rail}>
+            <div className={styles.railLabel}>Agent layer</div>
+            <div className={styles.railDesc}>
+              Specialized agents execute tasks
+            </div>
+          </div>
+          <div className={styles.bandBody}>
+            <div className={styles.orchestrator}>
+              <div className={styles.orchestratorName}>Orchestrator agent</div>
+              <div className={styles.orchestratorDesc}>
+                Plans, delegates, and monitors execution
+              </div>
+            </div>
+            <div className={styles.treeStem} aria-hidden="true" />
+            <div className={styles.treeBar} aria-hidden="true" />
+            <div className={styles.agentRow}>
+              {agents.map((name) => (
+                <div className={styles.agentCell} key={name}>
+                  <div className={styles.chip}>{name}</div>
+                </div>
+              ))}
+              <div className={styles.agentCell}>
+                <div className={`${styles.chip} ${styles.chipGhost}`}>
+                  {"More agents…"}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.flow} aria-hidden="true" />
+
+        {/* Band 3 — harness layer (Potpie-owned, lime) */}
+        <div className={`${styles.band} ${styles.bandOwned}`}>
+          <div className={styles.rail}>
+            <div className={styles.railLabel}>Harness layer</div>
+            <div className={styles.railDesc}>
+              The control plane that makes agents reliable
+            </div>
+          </div>
+          <div className={styles.bandBody}>
+            <div className={styles.harnessGrid}>
+              {harness.map((name) => (
+                <div className={styles.chip} key={name}>
+                  {name}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.flow} aria-hidden="true" />
+
+        {/* Band 4 — context layer (Potpie-owned, lime) */}
+        <div className={`${styles.band} ${styles.bandOwned}`}>
+          <div className={styles.rail}>
+            <div className={styles.railLabel}>Context layer</div>
+            <div className={styles.railDesc}>
+              Enterprise context that powers intelligence
+            </div>
+          </div>
+          <div className={styles.bandBody}>
+            <div className={styles.cardRow}>
+              {sources.map((card) => (
+                <div className={styles.card} key={card.name}>
+                  <div className={styles.cardName}>{card.name}</div>
+                  <div className={styles.cardItems}>{card.items}</div>
+                </div>
+              ))}
+            </div>
+            <div className={styles.innerFlow} aria-hidden="true" />
+            <div className={styles.cardRow}>
+              {graphs.map((card) => (
+                <div
+                  className={`${styles.card} ${styles.cardGraph}`}
+                  key={card.name}
+                >
+                  <div className={styles.cardName}>{card.name}</div>
+                  <div className={styles.cardItems}>{card.items}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.flow} aria-hidden="true" />
+
+        {/* Band 5 — model layer */}
+        <div className={styles.band}>
+          <div className={styles.rail}>
+            <div className={styles.railLabel}>Model layer</div>
+            <div className={styles.railDesc}>Interchangeable intelligence</div>
+          </div>
+          <div className={styles.bandBody}>
+            <div className={styles.chipRow}>
+              {models.map((name) => (
+                <div className={styles.chip} key={name}>
+                  {name}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className={styles.engagement}>
         <div className={`mono-tag ${styles.partLabel}`}>{"The engagement"}</div>
-        <div className={styles.steps}>
+        <div className={styles.stepRows}>
           {steps.map((step) => (
-            <div key={step.label} className={styles.step}>
-              <div className={`mono-tag ${styles.stepLabel}`}>{step.label}</div>
-              <p className={styles.stepText}>{step.text}</p>
+            <div key={step.num} className={styles.stepRow}>
+              <div className={styles.stepNum} aria-hidden="true">
+                {step.num}
+              </div>
+              <div className={styles.stepMain}>
+                <div className={styles.stepName}>{step.name}</div>
+                <p className={styles.stepText}>{step.text}</p>
+              </div>
+              <div className={styles.meter}>
+                <div className={styles.meterRow}>
+                  <div className={styles.meterLabel}>Potpie involvement</div>
+                  <div className={styles.meterTrack}>
+                    <div
+                      className={styles.meterFillDark}
+                      style={{ width: `${step.involvement}%` }}
+                    />
+                  </div>
+                </div>
+                <div className={styles.meterRow}>
+                  <div className={styles.meterLabel}>Customer autonomy</div>
+                  <div className={styles.meterTrack}>
+                    <div
+                      className={styles.meterFillLime}
+                      style={{ width: `${100 - step.involvement}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
-        </div>
-
-        <div className={styles.bars}>
-          <div>
-            <div className={styles.barLabel}>{"Potpie involvement"}</div>
-            <div className={`${styles.bar} ${styles.barInvolvement}`} />
-          </div>
-          <div>
-            <div className={styles.barLabel}>{"Customer autonomy"}</div>
-            <div className={`${styles.bar} ${styles.barAutonomy}`} />
-          </div>
         </div>
 
         <p className={styles.callout}>
