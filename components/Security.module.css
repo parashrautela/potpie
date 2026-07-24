@@ -13,6 +13,13 @@
   border-radius: 0;
 }
 
+.icon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: -6px 0 14px -8px;
+}
+
 .body {
   margin-top: 14px;
   font-family: var(--font-body), sans-serif;

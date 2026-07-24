@@ -3,19 +3,36 @@ import styles from "./Footer.module.css";
 const LINK_COLUMNS = [
   {
     head: "Product",
-    links: ["Platform", "How we work", "Security", "Pricing"],
+    links: [
+      { label: "Platform", href: "#" },
+      { label: "How we work", href: "#" },
+      { label: "Security", href: "#" },
+      { label: "Pricing", href: "/#pricing" },
+    ],
   },
   {
     head: "Company",
-    links: ["About", "Careers", "Contact"],
+    links: [
+      { label: "About", href: "#" },
+      { label: "Careers", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
   },
   {
     head: "Resources",
-    links: ["Docs", "Blog", "Changelog", "GitHub"],
+    links: [
+      { label: "Docs", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "Changelog", href: "#" },
+      { label: "GitHub", href: "#" },
+    ],
   },
   {
     head: "Legal",
-    links: ["Privacy policy", "Terms of service"],
+    links: [
+      { label: "Privacy policy", href: "#" },
+      { label: "Terms of service", href: "#" },
+    ],
   },
 ];
 
@@ -34,9 +51,9 @@ export default function Footer() {
             <div key={column.head}>
               <div className={styles.columnHead}>{column.head}</div>
               <ul className={styles.linkList}>
-                {column.links.map((label) => (
+                {column.links.map(({ label, href }) => (
                   <li key={label}>
-                    <a className={styles.link} href="#">
+                    <a className={styles.link} href={href}>
                       {label}
                     </a>
                   </li>

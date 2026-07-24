@@ -23,6 +23,13 @@
   z-index: 1;
 }
 
+.icon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: -6px 0 14px -8px;
+}
+
 .cardTitle {
   margin-top: 16px;
 }

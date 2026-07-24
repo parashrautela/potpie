@@ -1,4 +1,5 @@
 import SectionHeader from "./SectionHeader";
+import { IconVault, IconCompliance, IconControls } from "./IsoIcons";
 import styles from "./Security.module.css";
 
 export default function Security() {
@@ -7,7 +8,7 @@ export default function Security() {
       <SectionHeader
         eyebrow="Enterprise-ready"
         index={6}
-        total={7}
+        total={8}
         title="Centrally governed AI, deployed in your environment"
         subtitle={
           "Built for organizations where “where does the data go?” is the first question and the last one."
@@ -16,6 +17,7 @@ export default function Security() {
 
       <div className={styles.grid}>
         <div className={styles.card}>
+          <IconVault className={styles.icon} />
           <h3>{"We don’t use your data"}</h3>
           <p className={styles.body}>
             {
@@ -25,6 +27,7 @@ export default function Security() {
         </div>
 
         <div className={styles.card}>
+          <IconCompliance className={styles.icon} />
           <h3>Compliance</h3>
           <div className={styles.chips}>
             <span className={styles.chip}>SOC 2 Type II</span>
@@ -38,6 +41,7 @@ export default function Security() {
         </div>
 
         <div className={styles.card}>
+          <IconControls className={styles.icon} />
           <h3>Enterprise ready</h3>
           <p className={styles.body}>
             {

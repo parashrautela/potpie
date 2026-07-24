@@ -28,8 +28,8 @@ export default function Blogs() {
     <section className="section">
       <SectionHeader
         eyebrow="From the team"
-        index={7}
-        total={7}
+        index={8}
+        total={8}
         title="Latest from Potpie"
       />
       <div className={styles.grid}>

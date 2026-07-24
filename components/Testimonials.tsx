@@ -28,7 +28,7 @@ export default function Testimonials() {
       <SectionHeader
         eyebrow="Customers"
         index={3}
-        total={7}
+        total={8}
         title="Trusted inside Fortune 500 engineering teams"
       />
       {/* Real names + headshots requested from client — upgrade attributions when available */}

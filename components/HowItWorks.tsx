@@ -1,4 +1,5 @@
 import SectionHeader from "./SectionHeader";
+import EngagementSteps from "./EngagementSteps";
 import styles from "./HowItWorks.module.css";
 
 const interfaces = [
@@ -56,46 +57,13 @@ const graphs = [
 
 const models = ["Claude", "OpenAI / GPT", "Other LLMs", "Future models"];
 
-const steps = [
-  {
-    num: "01",
-    name: "Embed",
-    text: "Our engineers work alongside your team on real delivery — understanding your systems, architecture, and workflows.",
-    involvement: 90,
-  },
-  {
-    num: "02",
-    name: "Unify",
-    text: "The context graph fills in. Your code, tickets, docs, and decisions become a unified, traversable graph inside your environment.",
-    involvement: 75,
-  },
-  {
-    num: "03",
-    name: "Prove",
-    text: "Agents start doing the work: spec generation, implementation, debugging, testing, impact analysis. All grounded in context from stages 1-2.",
-    involvement: 55,
-  },
-  {
-    num: "04",
-    name: "Replicate",
-    text: "Workflows expand across teams. The context graph compounds. Engineers per unit of output goes down.",
-    involvement: 35,
-  },
-  {
-    num: "05",
-    name: "Transform",
-    text: "The practice is yours. The context is yours. The intelligence layer is yours. Potpie’s involvement decreases as your autonomy increases.",
-    involvement: 15,
-  },
-];
-
 export default function HowItWorks() {
   return (
     <section className="section">
       <SectionHeader
         eyebrow="How it works"
         index={4}
-        total={7}
+        total={8}
         title={
           <>
             {"From your data to your advantage — "}
@@ -236,39 +204,7 @@ export default function HowItWorks() {
 
       <div className={styles.engagement}>
         <div className={`mono-tag ${styles.partLabel}`}>{"The engagement"}</div>
-        <div className={styles.stepRows}>
-          {steps.map((step) => (
-            <div key={step.num} className={styles.stepRow}>
-              <div className={styles.stepNum} aria-hidden="true">
-                {step.num}
-              </div>
-              <div className={styles.stepMain}>
-                <div className={styles.stepName}>{step.name}</div>
-                <p className={styles.stepText}>{step.text}</p>
-              </div>
-              <div className={styles.meter}>
-                <div className={styles.meterRow}>
-                  <div className={styles.meterLabel}>Potpie involvement</div>
-                  <div className={styles.meterTrack}>
-                    <div
-                      className={styles.meterFillDark}
-                      style={{ width: `${step.involvement}%` }}
-                    />
-                  </div>
-                </div>
-                <div className={styles.meterRow}>
-                  <div className={styles.meterLabel}>Customer autonomy</div>
-                  <div className={styles.meterTrack}>
-                    <div
-                      className={styles.meterFillLime}
-                      style={{ width: `${100 - step.involvement}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <EngagementSteps />
 
         <p className={styles.callout}>
           {"A traditional vendor bills more as it deploys more people. We bill for platform leverage — the engineers-per-outcome number goes down over time."}

@@ -244,107 +244,10 @@
   border-top: 5px solid var(--border-strong);
 }
 
-/* ---------- Part B: engagement step rows ---------- */
+/* ---------- Part B: engagement (rows live in EngagementSteps) ---------- */
 
 .engagement {
   margin-top: 72px;
-}
-
-.stepRows {
-  border-top: 1px solid var(--border-default);
-}
-
-.stepRow {
-  position: relative;
-  display: grid;
-  grid-template-columns: 96px 1fr 340px;
-  gap: 32px;
-  align-items: center;
-  padding: 28px 4px;
-  border-bottom: 1px solid var(--border-default);
-  transition: background 0.15s ease;
-}
-
-.stepRow:hover {
-  background: var(--surface-tint);
-}
-
-/* Lime square marker on each row's top border */
-.stepRow::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-}
-
-.stepNum {
-  font-family: var(--font-display), sans-serif;
-  font-size: 44px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--accent-ink);
-  font-variant-numeric: tabular-nums;
-}
-
-.stepName {
-  font-family: var(--font-display), sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.stepText {
-  margin-top: 8px;
-  font-family: var(--font-body), sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-muted);
-  max-width: 520px;
-}
-
-/* Per-stage involvement/autonomy meter */
-.meter {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 18px;
-  border: 1px solid var(--border-default);
-  border-radius: 0;
-  background: var(--color-bg);
-}
-
-.meterRow {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.meterLabel {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.meterTrack {
-  height: 8px;
-  width: 100%;
-  background: rgba(11, 16, 21, 0.06);
-}
-
-.meterFillDark {
-  height: 100%;
-  background: var(--text-primary);
-}
-
-.meterFillLime {
-  height: 100%;
-  background: var(--color-accent);
 }
 
 /* ---------- Closing callout ---------- */
@@ -363,22 +266,6 @@
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
-  .stepRow {
-    grid-template-columns: 56px 1fr;
-    gap: 16px;
-    align-items: start;
-    padding: 24px 0;
-  }
-
-  .stepNum {
-    font-size: 32px;
-  }
-
-  .meter {
-    grid-column: 2;
-    max-width: 420px;
-  }
-
   .engagement {
     margin-top: 56px;
   }

@@ -4,12 +4,12 @@ import { useState } from "react";
 import styles from "./Nav.module.css";
 
 const NAV_LINKS = [
-  "Platform",
-  "How we work",
-  "Enterprise",
-  "Pricing",
-  "Docs",
-  "Blog",
+  { label: "Platform", href: "#" },
+  { label: "How we work", href: "#" },
+  { label: "Enterprise", href: "#" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Docs", href: "#" },
+  { label: "Blog", href: "#" },
 ];
 
 export default function Nav() {
@@ -18,14 +18,14 @@ export default function Nav() {
   return (
     <header className={styles.nav}>
       <div className={styles.inner}>
-        <a className={styles.wordmark} href="#">
+        <a className={styles.wordmark} href="/">
           <span className={styles.glyph} aria-hidden="true" />
           potpie
         </a>
 
         <nav className={styles.links} aria-label="Main">
-          {NAV_LINKS.map((label) => (
-            <a key={label} className={styles.link} href="#">
+          {NAV_LINKS.map(({ label, href }) => (
+            <a key={label} className={styles.link} href={href}>
               {label}
             </a>
           ))}
@@ -52,11 +52,11 @@ export default function Nav() {
 
       {open && (
         <div className={styles.panel}>
-          {NAV_LINKS.map((label) => (
+          {NAV_LINKS.map(({ label, href }) => (
             <a
               key={label}
               className={styles.panelLink}
-              href="#"
+              href={href}
               onClick={() => setOpen(false)}
             >
               {label}

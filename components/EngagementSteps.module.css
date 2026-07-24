@@ -1,0 +1,168 @@
+.stepRows {
+  border-top: 1px solid var(--border-default);
+}
+
+/* Fail-open: rows are visible by default; JS adds .pending only once
+   observers are registered, so a JS failure never blanks the section. */
+.stepRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr 340px;
+  gap: 32px;
+  align-items: center;
+  padding: 28px 4px;
+  border-bottom: 1px solid var(--border-default);
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.35s ease;
+}
+
+/* Armed but not yet scrolled into view */
+.pending {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Row currently crossing the middle of the viewport — scroll spotlight */
+.active {
+  background: var(--surface-tint);
+}
+
+/* Lime square marker on each row's top border */
+.stepRow::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  transition: transform 0.35s ease;
+}
+
+.active::before {
+  transform: scale(1.5);
+}
+
+.stepNum {
+  font-family: var(--font-display), sans-serif;
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
+  transition: opacity 0.35s ease;
+}
+
+.active .stepNum {
+  opacity: 1;
+}
+
+.stepName {
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.stepText {
+  margin-top: 8px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 520px;
+}
+
+/* Per-stage involvement/autonomy meter */
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  background: var(--color-bg);
+}
+
+.meterRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meterLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.meterTrack {
+  height: 8px;
+  width: 100%;
+  background: rgba(11, 16, 21, 0.06);
+}
+
+/* Bars fill from zero when the row is first scrolled into view */
+.meterFillDark,
+.meterFillLime {
+  height: 100%;
+  width: 0;
+  transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+.meterFillDark {
+  background: var(--text-primary);
+}
+
+.meterFillLime {
+  background: var(--color-accent);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .stepRow,
+  .pending {
+    opacity: 1;
+    transform: none;
+    transition: background 0.35s ease;
+  }
+
+  .meterFillDark,
+  .meterFillLime {
+    transition: none;
+  }
+
+  .stepRow::before,
+  .stepNum {
+    transition: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .stepRow {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 24px 0;
+  }
+
+  .stepNum {
+    font-size: 32px;
+  }
+
+  .meter {
+    grid-column: 2;
+    max-width: 420px;
+  }
+}

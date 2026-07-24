@@ -80,7 +80,7 @@ export default function Comparison() {
       <SectionHeader
         eyebrow="The shift"
         index={5}
-        total={7}
+        total={8}
         title={
           <>
             {"Context is "}

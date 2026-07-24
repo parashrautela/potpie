@@ -6,6 +6,7 @@ import Testimonials from "@/components/Testimonials";
 import HowItWorks from "@/components/HowItWorks";
 import Comparison from "@/components/Comparison";
 import Security from "@/components/Security";
+import Pricing from "@/components/Pricing";
 import Blogs from "@/components/Blogs";
 import PreFooterCta from "@/components/PreFooterCta";
 import Footer from "@/components/Footer";
@@ -34,6 +35,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <Security />
+        </Reveal>
+        <Reveal>
+          <Pricing />
         </Reveal>
         <Reveal>
           <Blogs />
